@@ -18,7 +18,7 @@
 
 	<asp:DropDownList id="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="course_number" DataValueField="course_number">
 	</asp:DropDownList>
-	<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=test-server-cs-460.database.windows.net;Initial Catalog=team1cs460;User ID=csadmin@test-server-cs-460;Password=cs4602017!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [course_number] FROM [managment_minor]">
+	<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=test-server-cs-460.database.windows.net;Initial Catalog=team1cs460;User ID=csadmin@test-server-cs-460;Password=cs4602017!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [course_number] FROM [marketing_minor]">
 	</asp:SqlDataSource>
 <p>Politics Minor.</p>
 
