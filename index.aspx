@@ -7,11 +7,24 @@
 </head>
 
 <body>
-
+<p>CIS Major.</p>
 <form id="form1" runat="server">
 	<asp:DropDownList id="DropDownListMajor" runat="server" DataSourceID="SqlDataSource1" DataTextField="course_number" DataValueField="course_number">
 	</asp:DropDownList>
-	<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=test-server-cs-460.database.windows.net;Initial Catalog=team1cs460;User ID=csadmin@test-server-cs-460;Password=cs4602017!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [CIS_major]">
+	<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=test-server-cs-460.database.windows.net;Initial Catalog=team1cs460;User ID=csadmin@test-server-cs-460;Password=cs4602017!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [course_number] FROM [CIS_major]">
+	</asp:SqlDataSource>
+<p>Marketing Minor.</p>
+
+
+	<asp:DropDownList id="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="course_number" DataValueField="course_number">
+	</asp:DropDownList>
+	<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=test-server-cs-460.database.windows.net;Initial Catalog=team1cs460;User ID=csadmin@test-server-cs-460;Password=cs4602017!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [course_number] FROM [managment_minor]">
+	</asp:SqlDataSource>
+<p>Politics Minor.</p>
+
+	<asp:DropDownList id="DropDownList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="course_number" DataValueField="course_number">
+	</asp:DropDownList>
+	<asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="Data Source=test-server-cs-460.database.windows.net;Initial Catalog=team1cs460;User ID=csadmin@test-server-cs-460;Password=cs4602017!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [course_number] FROM [politics_minor]">
 	</asp:SqlDataSource>
 </form>
 
