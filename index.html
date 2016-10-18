@@ -8,7 +8,7 @@
 
 <body>
 <p>CIS Major.</p>
-<form id="form1" runat="server">
+<form id="form1" runat="server"  onclick="open(DropDownListMajor)">
 	<asp:DropDownList id="DropDownListMajor" runat="server" DataSourceID="SqlDataSource1" DataTextField="course_number" DataValueField="course_number">
 	</asp:DropDownList>
 	<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=test-server-cs-460.database.windows.net;Initial Catalog=team1cs460;User ID=csadmin@test-server-cs-460;Password=cs4602017!" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [course_number] FROM [CIS_major]">
