@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
 <p>CIS Major.</p>
 <?php
 $host_name = "test-server-cs-460.database.windows.net";
