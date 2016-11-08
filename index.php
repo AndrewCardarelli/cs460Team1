@@ -37,6 +37,8 @@
    echo "<input type='submit' value = 'submit the form'/>";
    echo "</form>";
 
+   getResult();
+
 
 
    echo "<p>Marketing Minor.</p>";
@@ -65,27 +67,43 @@
 
    $option = isset($_POST['cism']) ? $_POST['cism']: false;
    if ($option) {
-       echo $_POST['cism'];
+       //echo $_POST['cism'];
    }
    else {
        echo "task option is required";
        exit;
    }
 
-   getResult();
    function getResult(){
-       $sqlall= "SELECT * FROM cis_major";
+       //$sqlall= "SELECT * FROM cis_major";
        $sqlform = "SELECT * FROM cis_major WHERE course_number LIKE '". $_POST['cism']."'";
-       echo $sqlform."\n";
-       echo $sqlall;
+       //echo $sqlform."\n";
+       //echo $sqlall;
        $result_form =mysql_query($sqlform);
-       $result_all =mysql_query($sqlall);
-       echo $result_all."\n";
-       echo $result_form;
-       return $result_form;
+       //$result_all =mysql_query($sqlall);
+       while ($allrow=mysql_fetch_array($result_form)){
+           $allnumber = $allrow["course_number"];
+           $allTitle = $allrow["course_title"];
+           $alldescript = $allrow["course_description"];
+           $allrequirement = $allrow["requirment"];
+           $allelective = $allrow["elective"];
+           $alldept = $allrow["course_dept"];
+           $allprereq= $allrow["course_prereq"];
+           echo "<br>";
+           echo "$allnumber "."| ";
+           echo "$allTitle "."| ";
+           echo "$alldescript " ."| ";
+           echo "$allrequirement " ."| ";
+           echo "$allelective " ."| ";
+           echo "$alldept " ."| ";
+           echo "$allprereq " ."| ";
+       }
+       //echo $result_all."\n";
+       //echo $result_form;
+       //return $result_form;
 
    }
-   
+
     ?>
 </body>
 </html>
