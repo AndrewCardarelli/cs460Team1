@@ -10,18 +10,18 @@
     <p>CIS Major.</p>
     <?php
 
-   $dbhost = "us-cdbr-azure-southcentral-f.cloudapp.net";
-   $dbuser = "bca23ab3a077fd";;
-   $dbpass = "585a705f";
+   
+    $dbhost = "us-cdbr-azure-east-c.cloudapp.net";
+    $dbuser = "bb4ff2b5583709";
+    $dbpass = "63ce33fa";
    $conn = mysql_connect($dbhost, $dbuser, $dbpass);
 
    if(! $conn ) {
        die('Could not connect: ' . mysql_error());
    }
-   $dbname = 'team1cs460my';
+   $dbname = 'team1webapp';
 
 
-   //echo 'Connected successfully';
    mysql_select_db($dbname, $conn) or die ("Error selecting specified database on mysql server: ".mysql_error());
    $mmquery= 'SELECT course_number FROM cis_major';
    $mmresult= mysql_query($mmquery) or die ("Query to get data from firsttable failed: ".mysql_error());
@@ -70,7 +70,7 @@
        //echo $_POST['cism'];
    }
    else {
-       echo "task option is required";
+       //echo "task option is required";
        exit;
    }
 
