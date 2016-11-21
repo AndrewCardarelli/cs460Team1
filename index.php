@@ -1,109 +1,71 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>CS460CourseFinder</title>
+<?php
 
-</head>
+ $dbhost = "us-cdbr-azure-east-c.cloudapp.net";
+ $dbuser = "bb4ff2b5583709";
+ $dbpass = "63ce33fa";
+ $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+ $dbname = 'team1webapp';
 
-<body>
-    <p>CIS Major.</p>
-    <?php
-
-   
-    $dbhost = "us-cdbr-azure-east-c.cloudapp.net";
-    $dbuser = "bb4ff2b5583709";
-    $dbpass = "63ce33fa";
-   $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-
-   if(! $conn ) {
-       die('Could not connect: ' . mysql_error());
-   }
-   $dbname = 'team1webapp';
-
-
-   mysql_select_db($dbname, $conn) or die ("Error selecting specified database on mysql server: ".mysql_error());
-   $mmquery= 'SELECT course_number FROM cis_major';
-   $mmresult= mysql_query($mmquery) or die ("Query to get data from firsttable failed: ".mysql_error());
-   echo '<form method = "post" action= "index.php" >';
-   echo "<select name = cism>";
-   while ($mmrow=mysql_fetch_array($mmresult)){
-       $mmTitle = $mmrow["course_number"];
-       echo "<option>
+ echo "<p>Select a Department</p>";
+ mysql_select_db($dbname, $conn) or die ("Error selecting specified database on mysql server: ".mysql_error());
+ $mmquery= 'SELECT dept_name FROM dept_table';
+ // $mmquery= 'SELECT dept_name FROM dept_table';
+ $mmresult= mysql_query($mmquery) or die ("Query to get data from firsttable failed: ".mysql_error());
+ //echo '<form method = "post" action= "StartPage.php" >';
+ echo '<form method = "post" action= "index.php" >';
+ echo "<select name = $dept>";
+ while ($mmrow=mysql_fetch_array($mmresult)){
+     $mmTitle = $mmrow["dept_name"];
+     echo "<option>
         $mmTitle
     </option>";
-   }
-   echo "</select>";// Closing of list box
-   echo "<input type='submit' value = 'submit the form'/>";
-   echo "</form>";
+ }
+ 
+ echo '<form method = "post" action= "Script2">';
+ echo "<input type='submit' value = 'submit the form'/>";
+ echo "</form>";
+ 
+ echo "<p> <b>Majors</b> </p>";
+ echo '<form method = "post" action= "CISMajor.php">';
+ echo "<input type='submit' value = 'CIS Major'/>";
+ echo "</form>";
+ 
+ echo '<form method = "post" action= "CFAMajor.php">';
+ echo "<input type='submit' value = 'CFA Major'/>";
+ echo "</form>";
 
-   getResult();
+ echo '<form method = "post" action= "EcoFiMajor.php">';
+ echo "<input type='submit' value = 'EcoFi Major'/>";
+ echo "</form>";
 
+ echo '<form method = "post" action= "ActuarialScienceMajor.php">';
+ echo "<input type='submit' value = 'Actuarial Science Major'/>";
+ echo "</form>";
 
+ echo "<p> <b>Minors</b> </p>";
+ echo '<form method = "post" action= "PoliticsMinor.php">';
+ echo "<input type='submit' value = 'Politics Minor'/>";
+ echo "</form>";
+ 
+ echo '<form method = "post" action= "MarketingMinor.php">';
+ echo "<input type='submit' value = 'Marketing Minor'/>";
+ echo "</form>";
 
-   echo "<p>Marketing Minor.</p>";
-   $mmquery= 'SELECT course_number FROM marketing_minor';
-   $mmresult= mysql_query($mmquery) or die ("Query to get data from firsttable failed: ".mysql_error());
-   echo "<select name = mm>";
-   while ($mmrow=mysql_fetch_array($mmresult)){
-       $mmTitle = $mmrow["course_number"];
-       echo "<option>
-        $mmTitle
-    </option>";
-   }
-   echo "</select>";// Closing of list box
+ echo '<form method = "post" action= "PhilosophyMinor.php">';
+ echo "<input type='submit' value = 'Philosophy Minor'/>";
+ echo "</form>";
 
-   echo "<p>Politics Minor.</p>";
-   $mmquery= 'SELECT course_number FROM politics_minor';
-   $mmresult= mysql_query($mmquery) or die ("Query to get data from firsttable failed: ".mysql_error());
-   echo "<select name = mm>";
-   while ($mmrow=mysql_fetch_array($mmresult)){
-       $mmTitle = $mmrow["course_number"];
-       echo "<option>
-        $mmTitle
-    </option>";
-   }
-   echo "</select>";// Closing of list box
+ echo '<form method = "post" action= "IDCCMinor.php">';
+ echo "<input type='submit' value = 'IDCC Minor'/>";
+ echo "</form>";
 
-   $option = isset($_POST['cism']) ? $_POST['cism']: false;
-   if ($option) {
-       //echo $_POST['cism'];
-   }
-   else {
-       //echo "task option is required";
-       exit;
-   }
+ echo '<form method = "post" action= "PsychologyMinor.php">';
+ echo "<input type='submit' value = 'Psychology Minor'/>";
+ echo "</form>";
 
-   function getResult(){
-       //$sqlall= "SELECT * FROM cis_major";
-       $sqlform = "SELECT * FROM cis_major WHERE course_number LIKE '". $_POST['cism']."'";
-       //echo $sqlform."\n";
-       //echo $sqlall;
-       $result_form =mysql_query($sqlform);
-       //$result_all =mysql_query($sqlall);
-       while ($allrow=mysql_fetch_array($result_form)){
-           $allnumber = $allrow["course_number"];
-           $allTitle = $allrow["course_title"];
-           $alldescript = $allrow["course_description"];
-           $allrequirement = $allrow["requirment"];
-           $allelective = $allrow["elective"];
-           $alldept = $allrow["course_dept"];
-           $allprereq= $allrow["course_prereq"];
-           echo "<br>";
-           echo "$allnumber "."| ";
-           echo "$allTitle "."| ";
-           echo "$alldescript " ."| ";
-           echo "$allrequirement " ."| ";
-           echo "$allelective " ."| ";
-           echo "$alldept " ."| ";
-           echo "$allprereq " ."| ";
-       }
-       //echo $result_all."\n";
-       //echo $result_form;
-       //return $result_form;
-
-   }
-
-    ?>
-</body>
-</html>
+ $submittedValue = '';
+ if (isset($_POST["depart_name"])) {
+     $submittedValue = $_POST["depart_name"];
+ }
+ 
+ ?>
