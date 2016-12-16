@@ -83,7 +83,7 @@ function getResult(){
         echo "<style>
 table, th, td {
     table-layout: fixed;
-    width: 170px;
+    width: 160px;
     border: 1px solid black;
     border-collapse: collapse;
 }
