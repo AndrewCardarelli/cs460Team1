@@ -1,12 +1,9 @@
 <?php
-$dbhost = "us-cdbr-azure-east-c.cloudapp.net";
-$dbuser = "bb4ff2b5583709";
-$dbpass = "63ce33fa";
-$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-$dbname = 'team1webapp';
-
-echo "<p>Select a Course</p>";
-mysql_select_db($dbname, $conn) or die ("Error selecting specified database on mysql server: ".mysql_error());
+echo '<body background ="Course Information1.jpg">';
+include 'connectDatabase.php';
+connectDatabase();
+echo "<p><font face= 'verdana'>Select a Course</font></p>";
+//mysql_select_db($dbname, $conn) or die ("Error selecting specified database on mysql server: ".mysql_error());
 $mmquery= 'SELECT course_number FROM ActuarialScience_major';
 $mmresult= mysql_query($mmquery) or die ("Query to get data from firsttable failed: ".mysql_error());
 echo '<form method = "post" action= "ActuarialScienceMajor.php" >';
@@ -21,7 +18,8 @@ while ($mmrow=mysql_fetch_array($mmresult)){
 echo "</select>";// Closing of list box
 echo "<input type='submit' value = 'submit the form'/>";
 echo "</form>";
-echo "<p> Fall courses </p>";
+getResult();
+echo "<p><font face= 'verdana'>Fall courses<font face= 'verdana'></font></p>";
 $mmfallquery= 'SELECT course_number FROM ActuarialScience_major WHERE Fall_2016 = "Yes" ';
 $mmresultfall= mysql_query($mmfallquery) or die ("Query to get data from firsttable failed: ".mysql_error());
 echo "<select name = cismfall>";
@@ -32,7 +30,7 @@ while ($mmfallrow=mysql_fetch_array($mmresultfall)){
     </option>";
 }
 echo "</select>";// Closing of list box
-echo "<p> Spring courses </p>";
+echo "<p><font face= 'verdana'>Spring courses</font></p>";
 $mmfallquery= 'SELECT course_number FROM ActuarialScience_major WHERE Spring_2017 = "Yes" ';
 $mmresultfall= mysql_query($mmfallquery) or die ("Query to get data from firsttable failed: ".mysql_error());
 echo "<select name = cismfall>";
@@ -43,10 +41,31 @@ while ($mmfallrow=mysql_fetch_array($mmresultfall)){
     </option>";
 }
 echo "</select>";// Closing of list box
-echo '<form method = "post" action= "index.php" >';
-echo "<input type='submit' value = 'back'/>";
-echo "</form>";
-getResult();
+
+echo "<p><font face= 'verdana'>Required courses</font></p>";
+$mmfallquery= 'SELECT course_number FROM ActuarialScience_major WHERE Requirement = "Y" ';
+$mmresultfall= mysql_query($mmfallquery) or die ("Query to get data from firsttable failed: ".mysql_error());
+echo "<select name = cismfall>";
+while ($mmfallrow=mysql_fetch_array($mmresultfall)){
+    $mmTitlefall = $mmfallrow["course_number"];
+    echo "<option>
+        $mmTitlefall
+    </option>";
+}
+echo "</select>";// Closing of list box
+
+echo "<p><font face= 'verdana'>Elective courses</font></p>";
+$mmfallquery= 'SELECT course_number FROM ActuarialScience_major WHERE elective = "Y" ';
+$mmresultfall= mysql_query($mmfallquery) or die ("Query to get data from firsttable failed: ".mysql_error());
+echo "<select name = cismfall>";
+while ($mmfallrow=mysql_fetch_array($mmresultfall)){
+    $mmTitlefall = $mmfallrow["course_number"];
+    echo "<option>
+        $mmTitlefall
+    </option>";
+}
+echo "</select>";// Closing of list box
+
 
 function getResult(){
     $sqlform = "SELECT * FROM actuarialscience_major WHERE course_number LIKE '". $_POST['actuarialsciencem']."'";
@@ -64,6 +83,8 @@ function getResult(){
 
         echo "<style>
 table, th, td {
+    table-layout: fixed;
+    width: 150px;
     border: 1px solid black;
     border-collapse: collapse;
 }
@@ -73,15 +94,15 @@ th, td {
         echo "</style>";
         echo "<table>
             <tr>
-                <td><b>Course Number</b><br />$allnumber</td>
-                <td><b>Course Title</b><br />$allTitle</td>
-                <td><b>Course Description</b><br />$alldescript</td>
-                <td><b>Requirement</b><br />$allrequirement</td>
-                <td><b>Elective</b><br />$allelective</td>
-                <td><b>Course Department</b><br />$alldept</td>
-                <td><b>Course Prerequisite</b><br />$allprereq</td>
-                <td><b>Available in Fall</b><br />$fall</td>
-                <td><b>Available in Spring</b><br />$spring</td>
+                <td BGCOLOR='#2270b5'><b>Course Number</b><br />$allnumber</td>
+                <td BGCOLOR='#2270b5'><b>Course Title</b><br />$allTitle</td>
+                <td BGCOLOR='#2270b5'><b>Course Description</b><br />$alldescript</td>
+                <td BGCOLOR='#2270b5'><b>Requirement</b><br />$allrequirement</td>
+                <td BGCOLOR='#2270b5'><b>Elective</b><br />$allelective</td>
+                <td BGCOLOR='#2270b5'><b>Course Department</b><br />$alldept</td>
+                <td BGCOLOR='#2270b5'><b>Course Prerequisite</b><br />$allprereq</td>
+                <td BGCOLOR='#2270b5'><b>Available in Fall</b><br />$fall</td>
+                <td BGCOLOR='#2270b5'><b>Available in Spring</b><br />$spring</td>
             </tr>";
         echo "</table>";
 
@@ -96,4 +117,13 @@ th, td {
         */
     }
 }
+
+  echo '<form method = "post" action= "http://www.bentley.edu/files/2016/08/26/Major%3DBSASC%2016-17.pdf">';
+  echo "<input type='submit' value = 'Degree Requirement Summary'/>";
+  echo "</form>";
+
+echo '<form method = "post" action= "index.php" >';
+echo "<input type='submit' value = 'back'/>";
+echo "</form>";
+echo "</body>"
 ?>
