@@ -1,6 +1,6 @@
 <?php
 //echo '<body background ="Course Information1.jpg">';
- echo '<link href="StyleSheet1.css" rel="stylesheet">';
+echo '<link href="StyleSheet2.css" rel="stylesheet">';
 include 'connectDatabase.php';
 connectDatabase();
 echo "<p><font face= 'verdana'>Select a Course</font></p>";
