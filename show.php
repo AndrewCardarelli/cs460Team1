@@ -7,15 +7,15 @@ $a= $_POST["a"];
 if ($a == ""){
 $a = "default";
 }
-$searchquery= "SELECT * FROM cis_major WHERE course_number LIKE '$a%' 
-UNION SELECT * FROM cfa_major WHERE course_number LIKE '$a%'
-UNION SELECT * FROM ecofi_major WHERE course_number LIKE '$a%'
-UNION SELECT * FROM actuarialscience_major WHERE course_number LIKE '$a%'
-UNION SELECT * FROM marketing_minor WHERE course_number LIKE '$a%'
-UNION SELECT * FROM philosophy_minor WHERE course_number LIKE '$a%'
-UNION SELECT * FROM psychology_minor WHERE course_number LIKE '$a%'
-UNION SELECT * FROM idcc_minor WHERE course_number LIKE '$a%'
-UNION SELECT * FROM politics_minor WHERE course_number LIKE '$a%'";
+$searchquery= "SELECT * FROM cis_major WHERE course_number LIKE '%$a%' 
+UNION SELECT * FROM cfa_major WHERE course_number LIKE '%$a%'
+UNION SELECT * FROM ecofi_major WHERE course_number LIKE '%$a%'
+UNION SELECT * FROM actuarialscience_major WHERE course_number LIKE '%$a%'
+UNION SELECT * FROM marketing_minor WHERE course_number LIKE '%$a%'
+UNION SELECT * FROM philosophy_minor WHERE course_number LIKE '%$a%'
+UNION SELECT * FROM psychology_minor WHERE course_number LIKE '%$a%'
+UNION SELECT * FROM idcc_minor WHERE course_number LIKE '%$a%'
+UNION SELECT * FROM politics_minor WHERE course_number LIKE '%$a%'";
 
 
 $searchresult = mysql_query($searchquery);
