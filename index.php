@@ -1,5 +1,6 @@
 <?php
- echo '<body background ="Plain Background1.jpg">';
+ //echo '<body background ="Plain Background1.jpg">';
+ echo '<link href="StyleSheet1.css" rel="stylesheet">';
  echo '<br> <br> <br> <br>';
  include 'connectDatabase.php';
  connectDatabase();
